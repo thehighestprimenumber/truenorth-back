@@ -4,6 +4,7 @@ import * as helpers from "./helpers";
 import * as validators from "../validators";
 import * as validatorHelpers from "../validatorHelpers";
 import {doOperation} from "./index";
+import {ERROR_DIVISION_BY_ZERO, ERROR_TWO_NUMBERS_REQUIRED} from "./operationDefinitions";
 
 const {describe, expect, it, beforeAll} = require("@jest/globals");
 const {jest: requiredJest} = require("@jest/globals");
@@ -80,7 +81,13 @@ describe("operations", () => {
 
         it("validates correctly", async () => {
             expect(await doOperation(OperationType.power, 2, null)).toEqual({
-                isValid: false, errorMessage: "you must provide two numbers for this operation",
+                isValid: false, errorMessage: ERROR_TWO_NUMBERS_REQUIRED,
+            });
+        });
+
+        it("validates correctly - division by 0", async () => {
+            expect(await doOperation(OperationType.division, 2, 0)).toEqual({
+                isValid: false, errorMessage: ERROR_DIVISION_BY_ZERO,
             });
         });
     });
