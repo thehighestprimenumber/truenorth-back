@@ -8,7 +8,9 @@ const bothAreNumbers = (a: unknown, b: unknown) => {
     return {isValid, errorMessage: "you must provide two numbers for this operation"};
 };
 const singleNumber = (a: unknown, b: unknown) => {
-    const isValid = (isNumber(a) || isNumber(b)) && !bothAreNumbers(a, b);
+    const {isValid: twoNumbers} = bothAreNumbers(a, b);
+    const atLeastOneNumber = isNumber(a) || isNumber(b);
+    const isValid = atLeastOneNumber && !twoNumbers;
     return {isValid, errorMessage: "you must provide a single number for this operation"};
 };
 const noNumber = (a: unknown, b: unknown) => {

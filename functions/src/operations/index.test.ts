@@ -74,6 +74,10 @@ describe("operations", () => {
             expect((result as string).length).toBe(DEFAULT_RANDOM_STRING_LENGTH);
         });
 
+        it("works correctly - squareRoot", async () => {
+            expect(await doOperation(OperationType.squareRoot, 4)).toEqual({isValid: true, result: 2});
+        });
+
         it("validates correctly", async () => {
             expect(await doOperation(OperationType.power, 2, null)).toEqual({
                 isValid: false, errorMessage: "you must provide two numbers for this operation",
