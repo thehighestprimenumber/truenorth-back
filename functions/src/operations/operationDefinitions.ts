@@ -13,13 +13,14 @@ const singleNumber = (a: unknown, b: unknown) => {
 };
 const noNumber = (a: unknown, b: unknown) => {
     const isValid = !(a || b);
-    return {isValid, errorMessage: "no numbers are valid parameters for this operation"};
+    return {isValid, errorMessage: "this function accepts no parameters. please clear the number fields and try again"};
 };
 
 const getRandomString = async () => {
     try {
         return getRandomStringFromAPI();
     } catch (e) {
+        console.error(e);
         throw new functions.https.HttpsError("internal", "An error occurred trying to get a random string");
     }
 };
