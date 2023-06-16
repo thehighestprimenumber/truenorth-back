@@ -8,7 +8,7 @@ import {getOperationDocument, insertRecord, updateUserBalance} from "./helpers";
 import operationDefinitions from "./operationDefinitions";
 
 
-export async function doOperation(type: OperationType, operand1: unknown, operand2: unknown) {
+export async function doOperation(type: OperationType, operand1?: unknown, operand2?: unknown) {
     const operation = operationDefinitions[type];
     const {isValid, errorMessage} = operation.validation(operand1, operand2);
     if (!isValid) {

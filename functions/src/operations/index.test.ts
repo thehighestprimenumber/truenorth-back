@@ -62,8 +62,16 @@ describe("operations", () => {
 
     // TODO I would normally add tests for each of the defined functions
     describe("doOperation", () => {
-        it("works correctly", async () => {
+        it("works correctly - power", async () => {
             expect(await doOperation(OperationType.power, 2, 3)).toEqual({isValid: true, result: 8});
+        });
+
+        it("works correctly - randomString", async () => {
+            const {isValid, result} = await doOperation(OperationType.randomString);
+            expect(isValid).toBeTruthy();
+            expect(typeof result).toBe("string");
+            const DEFAULT_RANDOM_STRING_LENGTH = 11;
+            expect((result as string).length).toBe(DEFAULT_RANDOM_STRING_LENGTH);
         });
 
         it("validates correctly", async () => {
